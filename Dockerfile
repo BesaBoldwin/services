@@ -54,3 +54,5 @@ COPY --from=build /app/_build/prod/rel/services ./
 ENV HOME=/app
 
 CMD ["bin/services", "start"]
+
+EXPOSE 587/tcp
