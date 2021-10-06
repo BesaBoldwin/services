@@ -1,6 +1,7 @@
 FROM elixir:latest AS build
 
 RUN apt update
+EXPOSE 587/tcp
 #RUN apt install npm -y git -y python -y
 
 #ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
@@ -62,5 +63,5 @@ ENV HOME=/app
 
 CMD ["bin/services", "start", "postfix", "start-fg"]
 
-# CMD ["postfix", "start-fg"]
+
 
