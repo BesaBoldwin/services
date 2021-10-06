@@ -12,7 +12,7 @@ use Mix.Config
 #     """
 
 config :services, Services.Repo,
-  ssl: true,
+  # ssl: true,
   # url: database_url,
   # pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
   username: "postgres",
@@ -42,7 +42,7 @@ config :services, ServicesWeb.Endpoint,
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start each relevant endpoint:
 #
-    config :services, ServicesWeb.Endpoint, server: true
+config :services, ServicesWeb.Endpoint, server: true
 
 #
 # Then you can assemble a release by calling `mix release`.
