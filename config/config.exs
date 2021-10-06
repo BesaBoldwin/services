@@ -20,11 +20,11 @@ config :services, ServicesWeb.Endpoint,
 
 config :services, Services.Mailer,
   adapter: Bamboo.SMTPAdapter,
-  server: "smtp-relay.find.co.zm",
-  hostname: "smtp-relay.find.co.zm",
+  # server: "smtp-relay.find.co.zm",
+  # hostname: "smtp-relay.find.co.zm",
   # server: "mail.find.co.zm",
-  port: 2050,
-  # port: 587,
+  # port: 2050,
+  port: 587,
   # or {:system, "SMTP_USERNAME"}
   username: "hello@find.co.zm",
   # or {:system, "SMTP_PASSWORD"}
