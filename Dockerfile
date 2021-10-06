@@ -49,7 +49,7 @@ RUN apt install libssl-dev -y wget -y
 RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
 RUN apt install ./wkhtmltox_0.12.6-1.focal_amd64.deb -y
 
-COPY --from=build /app/_build/prod/rel/services ./
+COPY --from=build /app/_build/prod/rel/services/bin/services ./
 
 ENV HOME=/app
 

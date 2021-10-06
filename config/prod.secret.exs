@@ -22,12 +22,12 @@ config :services, Services.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
-secret_key_base =
-  System.get_env("SECRET_KEY_BASE") ||
-    raise """
-    environment variable SECRET_KEY_BASE is missing.
-    You can generate one by calling: mix phx.gen.secret
-    """
+secret_key_base = "Juf3gmfiopuWIWmSlm+iCglQ1EcEgAYdebmvJ4I5GDRCoy2IP9bGgc5MwjjCCMXC"
+  # System.get_env("SECRET_KEY_BASE") ||
+  #   raise """
+  #   environment variable SECRET_KEY_BASE is missing.
+  #   You can generate one by calling: mix phx.gen.secret
+  #   """
 
 config :services, ServicesWeb.Endpoint,
   http: [
