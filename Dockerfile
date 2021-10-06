@@ -45,6 +45,13 @@ WORKDIR /app
 
 RUN apt update
 RUN apt install libssl-dev -y wget -y
+RUN apt install -y postfix
+
+RUN mkdir /config && \
+    mv /etc/postfix/main.cf /config/main.cf && \
+    mv /etc/postfix/master.cf /config/master.cf && \
+    ln -s /config/main.cf /etc/postfix/main.cf && \
+    ln -s /config/master.cf /etc/postfix/master.cf
 
 RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
 RUN apt install ./wkhtmltox_0.12.6-1.focal_amd64.deb -y
@@ -53,6 +60,7 @@ COPY --from=build /app/_build/prod/rel/services ./
 
 ENV HOME=/app
 
-CMD ["bin/services", "start"]
+CMD ["bin/services", "start", "postfix", "start-fg"]
 
-EXPOSE 587/tcp
+# CMD ["postfix", "start-fg"]
+
