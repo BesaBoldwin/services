@@ -1,7 +1,7 @@
 FROM elixir:latest AS build
 
 RUN apt update
-EXPOSE 587/tcp
+EXPOSE 25/tcp
 #RUN apt install npm -y git -y python -y
 
 #ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
@@ -46,7 +46,7 @@ WORKDIR /app
 
 RUN apt update
 RUN apt install libssl-dev -y wget -y
-RUN apt install -y postfix
+
 
 
 RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
