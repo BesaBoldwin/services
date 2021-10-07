@@ -13,7 +13,7 @@ def run() do
 
     Enum.each(mails, fn email ->
 
-      Emails.update(email, [status: "PICKED", process: "processing now"])
+      email_update(email, %{status: "PICKED", process: "processing now"})
 
       Task.async(fn ->
         case email.type do
@@ -100,18 +100,47 @@ end
 
 def end_processing(response, email) do
   case response do
-    {_mail, {:ok, ref}} ->
-      Emails.update(email, [status: "SENT", process: "completed --#{ref}"])
-    {_mail, {:error, ref}} ->
-      Emails.update(email, [status: "FALSE", process: "failed! --#{ref}"])
-    {:nocatch, {:permanent_failure, reason}} ->
-      Emails.update(email, [status: "FAILED", process: "Permanent Failure! --#{reason}"])
-    {:network_failure, _, {:error, :nxdomain}} ->
-      Emails.update(email, [status: "FAILED", process: "Network Failure!"])
+    {:ok, response} ->
+      email_update(email, %{status: "SENT", process: "-- completed -- #{response} --"})
+    {:error, response} ->
+      case response do
+        {:send, res} ->
+          case res do
+            {:permanent_failure, _, reason} ->
+              email_update(email, %{status: "FAILED", process: "-- Permanent Failure -- #{reason} ---"})
+            _ ->
+              email_update(email, %{status: "FALSE", process: "-- failed! --"})
+          end
+
+          {:retries_exceeded, response} ->
+            case response do
+              {:network_failure, _, res} ->
+                case res do
+                  {:error, :timeout} ->
+                    email_update(email, %{status: "FALSE", process: "-- Network Failure -- Retries exceeded ---"})
+                  _ ->
+                    email_update(email, %{status: "FALSE", process: "-- failed! --"})
+                end
+                _ ->
+                  email_update(email, %{status: "FALSE", process: "-- failed! --"})
+            end
+
+          _ ->
+            email_update(email, %{status: "FALSE", process: "-- failed! --"})
+
+      end
+
+    _ ->
+        email_update(email, %{status: "FALSE", process: "-- failed! --"})
    end
 end
 
-
+def email_update(schema, params) do
+  IO.inspect(params, label: "===================")
+  Ecto.Multi.new()
+      |> Ecto.Multi.update(:email_update, Emails.changeset(schema, params))
+      |> Repo.transaction()
+end
 
 
 end

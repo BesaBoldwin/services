@@ -20,7 +20,7 @@ defmodule Services.MixProject do
   def application do
     [
       mod: {Services.Application, []},
-      extra_applications: [:logger, :runtime_tools, :bamboo, :bamboo_smtp]
+      extra_applications: [:logger, :runtime_tools, :swoosh]
     ]
   end
 
@@ -47,9 +47,13 @@ defmodule Services.MixProject do
       {:plug_cowboy, "~> 2.0"},
 
       {:quantum, "~> 3.4"},
-      {:bamboo, "~> 1.3"},
-      {:bamboo_smtp, "~> 2.1.0"},
+      # {:bamboo, "~> 1.3"},
+      # {:bamboo_smtp, "~> 2.1.0"},
+      {:hackney, "~> 1.9"},
       {:endon, "~> 1.0"},
+      {:swoosh, "~> 1.5"},
+      {:gen_smtp, "~> 1.0"},
+      {:phoenix_swoosh, ">= 0.0.0", override: true}
     ]
   end
 

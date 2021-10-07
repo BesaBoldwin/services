@@ -19,22 +19,33 @@ config :services, ServicesWeb.Endpoint,
   live_view: [signing_salt: "DmxkRo3V"]
 
 config :services, Services.Mailer,
-  adapter: Bamboo.SMTPAdapter,
-  # server: "smtp-relay.find.co.zm",
-  # hostname: "smtp-relay.find.co.zm",
-  server: "mail.find.co.zm",
-  # port: 2050,
-  port: 587,
-  # or {:system, "SMTP_USERNAME"}
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "mail.find.co.zm",
   username: "hello@find.co.zm",
-  # or {:system, "SMTP_PASSWORD"}
   password: "F1nd@2020",
-  # can be `:always` or `:never`
-  tls: :if_available,
-  allowed_tls_versions: [:tlsv1, :"tlsv1.1", :"tlsv1.2"],
-  # can be `true`
   ssl: false,
-  retries: 3
+  tls: :always,
+  auth: :always,
+  port: 587,
+  retries: 2,
+  no_mx_lookups: false
+
+  # adapter: Bamboo.SMTPAdapter,
+  # # server: "smtp-relay.find.co.zm",
+  # # hostname: "smtp-relay.find.co.zm",
+  # server: "mail.find.co.zm",
+  # # port: 2050,
+  # port: 587,
+  # # or {:system, "SMTP_USERNAME"}
+  # username: "hello@find.co.zm",
+  # # or {:system, "SMTP_PASSWORD"}
+  # password: "F1nd@2020",
+  # # can be `:always` or `:never`
+  # tls: :if_available,
+  # allowed_tls_versions: [:tlsv1, :"tlsv1.1", :"tlsv1.2"],
+  # # can be `true`
+  # ssl: false,
+  # retries: 3
 
 # Configures Elixir's Logger
 config :logger, :console,
