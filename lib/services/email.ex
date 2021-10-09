@@ -57,7 +57,7 @@
         |> text_body("Thanks of ordering on our platform!")
         |> render_body("order.html", body: body, products: products)
         |> Mailer.deliver()
-        |> IO.inspect(label: "===================== IS IT SENT ***************")
+        |> IO.inspect(label: "===================== IS IT SENT?? ***************")
         |> Services.Workers.EmailWorker.end_processing(request)
       end
    end
@@ -72,6 +72,7 @@
      |> text_body(request.message)
      |> render_body("contact_us.html", %{request: request})
      |> Mailer.deliver()
+     |> IO.inspect(label: "===================== IS IT SENT?? ***************")
    end
 
   #  def password_reset(request) do
