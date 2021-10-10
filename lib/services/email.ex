@@ -66,7 +66,7 @@
      email_to = request.to
      new()
      |> to({"FIND.CO.ZM", "boldwinbesa@gmail.com"})
-    #  |> to(email_to)
+    #  |> to(request.name, email_to)
      |> from({"CLIENT", request.from})
      |> subject(request.subject)
      |> text_body(request.message)
