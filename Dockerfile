@@ -8,6 +8,19 @@ EXPOSE 587
 
 RUN apt update
 
+RUN apt-get install -q -y ssmtp mailutils
+
+# root is the person who gets all mail for userids < 1000
+RUN echo "boldwin@find.co.zm" >> /etc/ssmtp/ssmtp.conf
+
+# Here is the gmail configuration (or change it to your private smtp server)
+RUN echo "mailhub=smtp.gmail.com:587" >> /etc/ssmtp/ssmtp.conf
+RUN echo "AuthUser=boldwinbesa@gmail.com" >> /etc/ssmtp/ssmtp.conf
+RUN echo "AuthPass=amjustlooking@u2" >> /etc/ssmtp/ssmtp.conf
+
+RUN echo "UseTLS=YES" >> /etc/ssmtp/ssmtp.conf
+RUN echo "UseSTARTTLS=YES" >> /etc/ssmtp/ssmtp.conf
+
 # RUN apt install npm -y git -y python -y
 
 #ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
