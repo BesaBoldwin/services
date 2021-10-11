@@ -30,8 +30,8 @@ config :services, Services.Mailer,
   ssl: false,
   tls: :always,
   auth: :always,
-  port: 465,
-  # port: 587,
+  # port: 465,
+  port: 587,
   retries: 3,
   no_mx_lookups: false
 
