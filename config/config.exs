@@ -36,7 +36,7 @@ config :services, Services.Mailer,
   no_mx_lookups: false,
   dkim: [
     s: "default", d: "find-uat.find.co.zm",
-    private_key: {:pem_plain, File.read!("priv/keys/private-key.pem")}
+    private_key: {:pem_plain, File.read!("priv/static/keys/private-key.pem")}
   ]
 
   # adapter: Bamboo.SMTPAdapter,

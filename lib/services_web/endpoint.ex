@@ -24,7 +24,7 @@ defmodule ServicesWeb.Endpoint do
     at: "/",
     from: :services,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt keys)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
