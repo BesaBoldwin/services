@@ -1,7 +1,12 @@
 FROM elixir:latest AS build
 
+ENV PORT 25
+
+EXPOSE ${PORT}
+
+
 RUN apt update
-EXPOSE 25/tcp
+
 #RUN apt install npm -y git -y python -y
 
 #ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
