@@ -20,15 +20,16 @@ config :services, ServicesWeb.Endpoint,
 
 config :services, Services.Mailer,
   adapter: Swoosh.Adapters.SMTP,
-  # relay: "smtp.gmail.com",
-  # username: "boldwinbesa@gmail.com",
-  # password: "amjustlooking@u2",
-  relay: "mail.find.co.zm",
-  username: "hello@find.co.zm",
-  password: "F1nd@2020",
+  relay: "smtp.gmail.com",
+  username: "boldwinbesa@gmail.com",
+  password: "amjustlooking@u2",
+  # relay: "mail.find.co.zm",
+  # username: "hello@find.co.zm",
+  # password: "F1nd@2020",
   ssl: false,
   tls: :always,
   auth: :always,
+  # port: 465,
   port: 587,
   retries: 3,
   no_mx_lookups: false
@@ -71,6 +72,6 @@ config :services, Services.Scheduler,
  timeout: 30_000,
  jobs: [
   emails: [
-    schedule:  {:extended, "*/7"}, task: {Services.Workers.EmailWorker, :run, []},
+    schedule:  {:extended, "*/10"}, task: {Services.Workers.EmailWorker, :run, []},
   ]
  ]
