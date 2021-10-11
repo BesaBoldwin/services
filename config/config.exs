@@ -30,7 +30,7 @@ config :services, Services.Mailer,
   tls: :always,
   auth: :always,
   port: 587,
-  retries: 2,
+  retries: 3,
   no_mx_lookups: false
 
   # adapter: Bamboo.SMTPAdapter,
