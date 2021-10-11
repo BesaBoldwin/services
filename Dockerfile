@@ -7,8 +7,6 @@ EXPOSE ${PORT}
 
 RUN apt update
 
-RUN apt upgrade
-
 # RUN apt install npm -y git -y python -y
 
 #ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
@@ -52,7 +50,6 @@ FROM ubuntu:20.04 AS app
 WORKDIR /app
 
 RUN apt update
-RUN apt upgrade
 RUN apt install libssl-dev -y wget -y
 
 
