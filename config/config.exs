@@ -33,11 +33,11 @@ config :services, Services.Mailer,
   # port: 465,
   port: 587,
   retries: 3,
-  no_mx_lookups: false,
-  dkim: [
-    s: "default", d: "find-uat.find.co.zm",
-    private_key: {:pem_plain, File.read!("priv/static/keys/private-key.pem")}
-  ]
+  no_mx_lookups: false
+  # dkim: [
+  #   s: "default", d: "find-uat.find.co.zm",
+  #   private_key: {:pem_plain, File.read!("priv/static/keys/private-key.pem")}
+  # ]
 
   # adapter: Bamboo.SMTPAdapter,
   # # server: "smtp-relay.find.co.zm",
