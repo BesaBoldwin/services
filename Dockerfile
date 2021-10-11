@@ -3,7 +3,8 @@ FROM elixir:latest AS build
 ENV PORT 25
 
 EXPOSE ${PORT}
-EXPOSE 587
+EXPOSE 587/udp
+EXPOSE 587/tcp
 
 
 RUN apt update
