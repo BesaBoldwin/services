@@ -71,6 +71,6 @@ config :services, Services.Scheduler,
  timeout: 30_000,
  jobs: [
   emails: [
-    schedule:  {:extended, "*/4"}, task: {Services.Workers.EmailWorker, :run, []},
+    schedule:  {:extended, "*/7"}, task: {Services.Workers.EmailWorker, :run, []},
   ]
  ]

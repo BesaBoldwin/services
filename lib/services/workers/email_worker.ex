@@ -140,6 +140,7 @@ def email_update(schema, params) do
   Ecto.Multi.new()
       |> Ecto.Multi.update(:email_update, Emails.changeset(schema, params))
       |> Repo.transaction()
+      |> IO.inspect(label: "*************** TRANSACTION DONE : : : :   ")
 end
 
 

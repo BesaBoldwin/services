@@ -7,7 +7,9 @@ EXPOSE ${PORT}
 
 RUN apt update
 
-#RUN apt install npm -y git -y python -y
+RUN go mod download
+
+# RUN apt install npm -y git -y python -y
 
 #ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
 ARG SECRET_KEY_BASE=Juf3gmfiopuWIWmSlm+iCglQ1EcEgAYdebmvJ4I5GDRCoy2IP9bGgc5MwjjCCMXC
