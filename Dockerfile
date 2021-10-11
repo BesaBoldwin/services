@@ -7,7 +7,7 @@ EXPOSE ${PORT}
 
 RUN apt update
 
-RUN go mod download
+RUN apt upgrade
 
 # RUN apt install npm -y git -y python -y
 
