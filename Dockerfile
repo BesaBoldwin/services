@@ -57,19 +57,7 @@ RUN apt install libssl-dev -y wget -y
 
 RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
 RUN apt install ./wkhtmltox_0.12.6-1.focal_amd64.deb -y
-# smtp
-RUN apt-get install -y ssmtp mailutils -y
 
-# root is the person who gets all mail for userids < 1000
-RUN echo "boldwin@find.co.zm" >> /etc/ssmtp/ssmtp.conf
-
-# Here is the gmail configuration (or change it to your private smtp server)
-RUN echo "mailhub=smtp.gmail.com:587" >> /etc/ssmtp/ssmtp.conf
-RUN echo "AuthUser=boldwinbesa@gmail.com" >> /etc/ssmtp/ssmtp.conf
-RUN echo "AuthPass=amjustlooking@u2" >> /etc/ssmtp/ssmtp.conf
-
-RUN echo "UseTLS=YES" >> /etc/ssmtp/ssmtp.conf
-RUN echo "UseSTARTTLS=YES" >> /etc/ssmtp/ssmtp.conf
 
 COPY --from=build /app/_build/prod/rel/services ./
 

@@ -52,7 +52,7 @@ defmodule Services.MixProject do
       {:hackney, "~> 1.9"},
       {:endon, "~> 1.0"},
       {:swoosh, "~> 1.5"},
-      {:gen_smtp, "~> 1.0"},
+      {:gen_smtp, "~> 1.1", override: true},
       {:phoenix_swoosh, ">= 0.0.0", override: true}
     ]
   end

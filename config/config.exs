@@ -20,12 +20,12 @@ config :services, ServicesWeb.Endpoint,
 
 config :services, Services.Mailer,
   adapter: Swoosh.Adapters.SMTP,
-  relay: "smtp.gmail.com",
-  username: "boldwinbesa@gmail.com",
-  name: "boldwin besa",
+  # relay: "smtp.gmail.com",
+  # username: "boldwinbesa@gmail.com",
+  # password: "amjustlooking@u2",
+  relay: "mail.find.co.zm",
+  username: "boldwin@find.co.zm",
   password: "amjustlooking@u2",
-  # relay: "mail.find.co.zm",
-  # username: "hello@find.co.zm",
   # password: "F1nd@2020",
   ssl: false,
   tls: :always,
@@ -33,7 +33,11 @@ config :services, Services.Mailer,
   # port: 465,
   port: 587,
   retries: 3,
-  no_mx_lookups: false
+  no_mx_lookups: false,
+  dkim: [
+    s: "default", d: "find-uat.find.co.zm",
+    private_key: {:pem_plain, File.read!("priv/keys/private-key.pem")}
+  ]
 
   # adapter: Bamboo.SMTPAdapter,
   # # server: "smtp-relay.find.co.zm",
