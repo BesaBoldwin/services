@@ -11,16 +11,27 @@ use Mix.Config
 #     For example: ecto://USER:PASS@HOST/DATABASE
 #     """
 
+
+
 config :services, Services.Repo,
-  # ssl: true,
-  # url: database_url,
-  # pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
-  username: "postgres",
-  password: "qwerty12",
-  database: "find",
-  hostname: "192.248.165.187",
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+      username: "find",
+      password: "F1nd@2020",
+      database: "find",
+      hostname: "202.61.204.157",
+      show_sensitive_data_on_connection_error: true,
+      pool_size: 50 #
+
+
+# config :services, Services.Repo,
+#   # ssl: true,
+#   # url: database_url,
+#   # pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+#   username: "postgres",
+#   password: "qwerty12",
+#   database: "find",
+#   hostname: "192.248.165.187",
+#   show_sensitive_data_on_connection_error: true,
+#   pool_size: 10
 
 secret_key_base = "Juf3gmfiopuWIWmSlm+iCglQ1EcEgAYdebmvJ4I5GDRCoy2IP9bGgc5MwjjCCMXC"
   # System.get_env("SECRET_KEY_BASE") ||
