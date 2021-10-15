@@ -8,7 +8,7 @@ defmodule Services.Workers.EmailWorker do
 
 def run() do
 
-    mails = Repo.all(from a in Emails, where: a.status == "FALSE")
+    mails = Repo.all(from a in Emails, where: a.status == "FALSE" or a.status == "READY" )
     |> IO.inspect(label: "===============| EMAIL JOBS |========")
 
     Enum.each(mails, fn email ->
@@ -21,6 +21,10 @@ def run() do
               contact_us(email)
           "order" ->
               order(email)
+          "password_reset" ->
+            Email.password_reset(email)
+          "user_registration" ->
+            Email.user_confirmation_mail(email)
         end
       end)
 

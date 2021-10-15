@@ -17,6 +17,7 @@ defmodule ServicesWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/details/:id", PageController, :details
   end
 
   # Other scopes may use custom stacks.

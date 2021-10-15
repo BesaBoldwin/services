@@ -29,16 +29,17 @@
 
 
    def user_confirmation_mail(data) do
-    %{"email" => email, "url" => url, "user" => user} = data
-    %{"first_name" => first_name, "last_name" => last_name} = user
-     email_to = email
-     names = "#{first_name} #{last_name}"
+    %{:from => from, :to => to, :url => url} = data
+    #  from = data.from
+    #  to = data.to
+    #  url = data.rul
+     names = data.name
      new()
-     |> to({names, email_to})
-     |> from({"FIND.CO.ZM", "hello@find.co.zm"})
+     |> to({names, to})
+     |> from({"FIND.CO.ZM", from})
      |> subject("Confirmation!")
      |> text_body("Kindly confirm your account!")
-     |> render_body("user_confirmation.html", %{url: url, name: first_name, last_name: last_name, user: user})
+     |> render_body("user_confirmation.html", %{url: url, name: names})
      |> Mailer.deliver()
    end
 
@@ -75,21 +76,20 @@
      |> IO.inspect(label: "===================== IS IT SENT?? ***************")
    end
 
-  #  def password_reset(request) do
-  #   #  email_to = request["user"]["email"]
-  #    %{"user" => user, "url" => url } = request
-  #    %{"email" => email} = user
-
-  #    image = Endpoint.static_path("/template/mail/Icons/find_icon.png")
-  #    new_email()
-  #    |> to(email)
-  #    |> from("info@find.co.zm")
-  #    |> subject("Password Reset request")
-  #    |> text_body(request["data"])
-  #    |> put_html_layout({ServicesWeb.LayoutView, "app.html"})
-  #    |> render("recovery_password.html", image: image, url: url)
-  #    |> Mailer.deliver_now(response: true)
-  #  end
+   @spec password_reset(%{
+           :__struct__ => atom | %{:__changeset__ => map, optional(any) => any},
+           optional(atom) => any
+         }) :: any
+   def password_reset(%{"from" => from, "to" => to, "url" => url } = request) do
+     new()
+     |> to({"", to})
+     |> from({"FIND.CO.ZM", from})
+     |> subject("PASSWORD RESET REQUEST")
+     |> text_body("Thanks for using our platform!")
+     |> render_body("recovery_password.html", url: url)
+     |> Mailer.deliver()
+     |> Services.Workers.EmailWorker.end_processing(request)
+   end
 
 
 

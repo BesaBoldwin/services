@@ -37,6 +37,13 @@ defmodule ServicesWeb.EmailView do
     image.url
   end
 
+  def find_image_logo() do
+    # Routes.static_path(Endpoint, "/images/icons/findicon.png")
+    Application.app_dir(:services, "priv/static" <> "/images/icons/logo.png")
+    |> File.read!
+    |> Base.encode64
+  end
+
 
 
 end

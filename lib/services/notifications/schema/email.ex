@@ -15,6 +15,7 @@ defmodule Services.Notification.Schema.Emails do
     field :name, :string
     field :mobile, :string
     field :process, :string
+    field :url, :string
 
     timestamps()
   end
@@ -22,7 +23,7 @@ defmodule Services.Notification.Schema.Emails do
   @doc false
   def changeset(email, attrs) do
     email
-    |> cast(attrs, [:status, :process, :oders_id, :name, :mobile, :subject, :oders_id, :message, :type, :to, :from, :status_code])
+    |> cast(attrs, [:status, :process, :url, :oders_id, :name, :mobile, :subject, :oders_id, :message, :type, :to, :from, :status_code])
     |> validate_required([:status, :type, :to, :from])
   end
 end
