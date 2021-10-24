@@ -18,6 +18,8 @@ defmodule ServicesWeb.Router do
 
     get "/", PageController, :index
     get "/details/:id", PageController, :details
+    get "/test", PageController, :test
+    post "/post", PageController, :confirm
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,134 @@
+<script src="/js/jquery1-7.min.js"></script>
+<script src="/js/payment_form.js"></script>
+
+<style>
+   a {
+    font-size: 1.0em;
+    text-decoration: none;
+    }
+
+    input[type=submit] {
+        margin-top: 10px;
+    }
+
+    span {
+        font-weight: bold;
+        width: 350px;
+        display: inline-block;
+    }
+
+    .fieldName {
+        width: 400px;
+        font-weight: bold;
+        vertical-align: top;
+    }
+
+    .fieldValue {
+        width: 400px;
+        font-weight: normal;
+        vertical-align: top;
+    }
+
+</style>
+
+
+<form id="payment_form" action="<%= Routes.page_path(@conn, :confirm) %>" method="POST">
+     <fieldset>
+        <legend>Payment Details</legend>
+        <div id="paymentDetailsSection" class="section">
+            <input type="hidden" name="access_key" value="fb508369efb83c6cacfea3a9d5cdf289"><br/>
+            <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token()%>">
+            <input type="hidden" name="profile_id" value="282BDF05-46F3-4A95-9A74-514CF6355F3F"><br/>
+            <input type="hidden" name="transaction_uuid" value="<%= Ecto.UUID.generate() %>"><br/>
+            <input type="hidden" name="signed_field_names" value="access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_company_name,bill_to_address_city,bill_to_address_country,bill_to_address_line1,bill_to_address_postal_code,bill_to_address_state,bill_to_email,bill_to_forename,bill_to_surname,bill_to_phone">
+            <input type="hidden" name="unsigned_field_names"><br/>
+            <input type="hidden" name="signed_date_time" value="<%= DateTime.utc_now %>"><br/>
+            <input type="hidden" name="locale" value="en"><br/>
+            <input type='text' name="amount" value='70' autofocus/><br/>
+            <input type='text' name="currency" value='ZMW'/><br/>
+            <input type='text' name="reference_number" value='100005<%= Enum.random(10000000..999999999) %>'/><br/>
+            <input type='text' name="transaction_type" value='sale'/><br/>
+            <input type='text' name="bill_to_company_name" value='Probase Ltd'/><br/>
+            <input type='text' name="bill_to_address_city" value='Lusaka'/><br/>
+            <input type='text' name="bill_to_address_country" value='ZM'/><br/>
+            <input type='text' name="bill_to_address_line1" value='<%= String.slice("OFF LEOPARD HILL ROAD NEAR MIKANGO BARACKS, OFF LEOPARD HILL ROAD NEAR MIKANGO BARACKS, OFF LEOPARDS HILL ROAD", 0..50) %>'/><br/>
+            <input type='text' name="bill_to_address_postal_code" value='10110'/><br/>
+            <input type='text' name="bill_to_address_state" value='Lusaka'/><br/>
+            <input type='text' name="bill_to_email" value='charles@probasegroup.com'/><br/>
+            <input type='text' name="bill_to_forename" value='Charles'/><br/>
+            <input type='text' name="bill_to_surname" value='Mtonga'/><br/>
+            <input type='text' name="bill_to_phone" value='260964926646'/><br/>
+        </div>
+    </fieldset>
+    <input type="submit" value="Submit"/>
+
+</form>
+
+
+ <script type="text/javascript">
+
+
+ $(function () {
+    payment_form = $('form').attr('id');
+    addLinkToSetDefaults();
+});
+
+
+function setDefaultsForAll() {
+         if (payment_form === "payment_confirmation"){
+      setDefaultsForUnsignedDetailsSection();
+   }
+   else {
+      setDefaultsForPaymentDetailsSection();
+   }
+}
+
+function addLinkToSetDefaults() {
+    $(".section").prev().each(function (i) {
+        legendText = $(this).text();
+        $(this).text("");
+
+        var setDefaultMethod = "setDefaultsFor" + capitalize($(this).next().attr("id")) + "()";
+
+        newlink = $(document.createElement("a"));
+        newlink.attr({
+            id:'link-' + i, name:'link' + i, href:'#'
+        });
+        newlink.append(document.createTextNode(legendText));
+        newlink.bind('click', function () {
+            eval(setDefaultMethod);
+        });
+
+        $(this).append(newlink);
+    });
+
+    newbutton = $(document.createElement("input"));
+    newbutton.attr({
+        id:'defaultAll', value:'Default All', type:'button', onClick:'setDefaultsForAll()'
+    });
+    newbutton.bind('click', function() {
+        setDefaultsForAll;
+    });
+    $("#"+payment_form).append(newbutton);
+}
+
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function setDefaultsForPaymentDetailsSection() {
+    $("input[name='transaction_type']").val("authorization");
+    $("input[name='reference_number']").val(new Date().getTime());
+    $("input[name='amount']").val("100.00");
+    $("input[name='currency']").val("USD");
+}
+
+function setDefaultsForUnsignedDetailsSection(){
+    $("input[name='card_type']").val("001");
+    $("input[name='card_number']").val("4242424242424242");
+    $("input[name='card_expiry_date']").val("11-2020");
+}
+
+
+
+ </script>
