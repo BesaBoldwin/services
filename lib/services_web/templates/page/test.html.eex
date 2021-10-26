@@ -42,7 +42,8 @@
             <input type="hidden" name="transaction_uuid" value="<%= Ecto.UUID.generate() %>"><br/>
             <input type="hidden" name="signed_field_names" value="access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_company_name,bill_to_address_city,bill_to_address_country,bill_to_address_line1,bill_to_address_postal_code,bill_to_address_state,bill_to_email,bill_to_forename,bill_to_surname,bill_to_phone">
             <input type="hidden" name="unsigned_field_names"><br/>
-            <input type="hidden" name="signed_date_time" value="<%= DateTime.utc_now %>"><br/>
+            <input type="hidden" name="signed_date_time" value="2021-10-11T15:16:54Z"><br/> <!--
+            <input type="hidden" name="signed_date_time" value="<%= DateTime.utc_now %>"><br/>-->
             <input type="hidden" name="locale" value="en"><br/>
             <input type='text' name="amount" value='70' autofocus/><br/>
             <input type='text' name="currency" value='ZMW'/><br/>
