@@ -11,7 +11,7 @@
     user = %{name: "Boldwin", email: "boldwinbesa@gmail.com", username: "Testing"}
     new()
     |> to({user.name, user.email})
-    |> from({"FIND.CO.ZM", "boldwin@find.co.zm"})
+    |> from({"Find.co.zm", "boldwin@Find.co.zm"})
     |> subject("Hello, Avengers!")
     |> html_body("<h1>Hello #{user.name}</h1>")
     |> text_body("Hello #{user.name}\n")
@@ -23,7 +23,7 @@
 
 #   {:error,
 #  {:send,
-#   {:permanent_failure, 'mail.find.co.zm',
+#   {:permanent_failure, 'mail.Find.co.zm',
 #    "550-Verification failed for <hulk.smash@example.com>\r\n550-The mail server does not recognize hulk.smash@example.com as a valid sender.\r\n550 Sender verify failed\r\n"}}}
 
 
@@ -36,7 +36,7 @@
      names = data.name
      new()
      |> to({names, to})
-     |> from({"FIND.CO.ZM", from})
+     |> from({"Find.co.zm", from})
      |> subject("Confirmation!")
      |> text_body("Kindly confirm your account!")
      |> render_body("user_confirmation.html", %{url: url, name: names})
@@ -49,11 +49,11 @@
 
 
    def send_order_mail(%{"order_data" => body, "product" => products}, request) do
-      recievers = [%{to: request.to}, %{to: "orders@find.co.zm"}]
+      recievers = [%{to: request.to}, %{to: "orders@Find.co.zm"}]
       for item <- recievers do
         new()
         |> to({"#{body.first_name} #{body.last_name}", item.to})
-        |> from({"FIND.CO.ZM", request.from})
+        |> from({"Find.co.zm", request.from})
         |> subject(request.subject)
         |> text_body("Thanks of ordering on our platform!")
         |> render_body("order.html", body: body, products: products)
@@ -66,7 +66,7 @@
    def contact_us(request) do
      email_to = request.to
      new()
-     |> to({"FIND.CO.ZM", "boldwinbesa@gmail.com"})
+     |> to({"Find.co.zm", "boldwinbesa@gmail.com"})
     #  |> to(request.name, email_to)
      |> from({"CLIENT", request.from})
      |> subject(request.subject)
@@ -83,7 +83,7 @@
    def password_reset(%{"from" => from, "to" => to, "url" => url } = request) do
      new()
      |> to({"", to})
-     |> from({"FIND.CO.ZM", from})
+     |> from({"Find.co.zm", from})
      |> subject("PASSWORD RESET REQUEST")
      |> text_body("Thanks for using our platform!")
      |> render_body("recovery_password.html", url: url)
