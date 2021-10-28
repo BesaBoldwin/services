@@ -72,11 +72,11 @@ config :endon,
 import_config "#{Mix.env()}.exs"
 
 
- config :services, Services.Scheduler,
-  overlap: false,
-  timeout: 30_000,
-  jobs: [
-   emails: [
-     schedule:  {:extended, "*/10"}, task: {Services.Workers.EmailWorker, :run, []},
-   ]
+config :services, Services.Scheduler,
+ overlap: false,
+ timeout: 30_000,
+ jobs: [
+  emails: [
+    schedule:  {:extended, "*/5"}, task: {Services.Workers.EmailWorker, :run, []},
   ]
+ ]
