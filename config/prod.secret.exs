@@ -15,9 +15,10 @@ use Mix.Config
 
 config :services, Services.Repo,
       username: "find",
-      password: "F1nd@2020",
+      password: "F1nd@2020$$",
       database: "find",
-      hostname: "202.61.204.157",
+      # hostname: "202.61.204.157",
+      hostname: "srv-captain--postgresql-db",
       show_sensitive_data_on_connection_error: true,
       pool_size: 10
 
