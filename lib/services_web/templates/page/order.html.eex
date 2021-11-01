@@ -597,7 +597,7 @@
                                         <%= for product <- @products do %>
                                             <tr>
                                                 <td width="80%" class="purchase_item">
-                                                    <div class="purchase-img"><img src="data:image/jpeg;base64, <%= product.image %>" height="75" width="75"></div>
+                                                    <div class="purchase-img"><img src="data:image/jpeg;base64, <%= raw product.image %>" height="75" width="75"></div>
                                                     <span class="f-fallback"><%= product.product_name %></span></td>
                                                 <td class="align-right" width="20%" class="purchase_item"><span class="f-fallback"><%= product.price %></span></td>
                                             </tr>
