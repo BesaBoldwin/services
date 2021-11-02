@@ -80,7 +80,7 @@ defp prepare_order_products(email) do
     order_by: [a.id, a.final_price, b.id, b.name, c.id, c.url],
     select: %{
       product_name: b.name,
-      image: c.url,
+      image: c.image,
       price: a.final_price
     }
 
