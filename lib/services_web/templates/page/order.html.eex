@@ -22,7 +22,7 @@
                                     <tbody>
                                         <tr>
                                             <td style="padding-bottom: 10px;">
-                                                <a href="https://shop.find.co.zm"><img src="/images/icons/findicon.png" alt="Find" style="height: 100px"  /></a>
+                                                <a href="https://shop.find.co.zm"><img src="data:image/jpeg;base64, <%= find_image() %>" alt="Find" style="height: 100px"  /></a>
                                             </td>
                                         </tr>
                                         <tr>
