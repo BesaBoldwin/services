@@ -12,7 +12,8 @@ config :services,
 
 # Configures the endpoint
 config :services, ServicesWeb.Endpoint,
-  url: [host: "localhost"],
+  # url: [host: "localhost"],
+  url: [host: "email-service.find.co.zm"],
   secret_key_base: "Juf3gmfiopuWIWmSlm+iCglQ1EcEgAYdebmvJ4I5GDRCoy2IP9bGgc5MwjjCCMXC",
   render_errors: [view: ServicesWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Services.PubSub,
