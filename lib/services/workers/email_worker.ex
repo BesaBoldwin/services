@@ -75,13 +75,16 @@ end
 defp prepare_order_products(email) do
   Repo.all(from a in "order_product",
     left_join: b in "products", on: a.products_id == b.id,
-    left_join: c in "product_images", on: b.id == c.products_id,
+    # left_join: c in "product_images", on: b.id == c.products_id,
     where: a.order_id  == type(^email.oders_id, :integer),
-    order_by: [a.id, a.final_price, b.id, b.name, c.id, c.url],
+    group_by: [a.id, a.final_price, b.id, b.name],
+    # group_by: [a.id, a.final_price, b.id, b.name, c.id, c.url],
     select: %{
       product_name: b.name,
-      image: c.image,
-      price: a.final_price
+      image: b.image,
+      attributes: a.attributes,
+      price: a.final_price,
+      qty: a.product_quantity
     }
 
   )

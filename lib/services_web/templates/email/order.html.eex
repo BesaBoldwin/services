@@ -22,7 +22,7 @@
                                     <tbody>
                                         <tr>
                                             <td style="padding-bottom: 10px;">
-                                                <a href="https://find.co.zm"><img src="data:image/jpeg;base64, <%= find_image() %>" alt="Find" style="height: 100px"  /></a>
+                                                <a href="https://find.co.zm"><img src="/images/icons/findicon.png" alt="Find" style="height: 100px"  /></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -57,17 +57,17 @@
                                     <tbody>
                                         <tr>
                                             <td style="width: 55%; font-size: 16px; font-weight: bold; color: #666666; padding-bottom: 5px;">
-                                                Adderss
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 55%; font-size: 14px; line-height: 18px; color: #666666;">
-                                              <%= @body.first_name <> " " <> @body.last_name %>
+                                            <%= @body.first_name <> " " <> @body.last_name %>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width: 55%; font-size: 14px; line-height: 18px; color: #666666;">
                                               <%= @body.phone_number %> <br> <%= @body.email %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 55%; font-size: 16px; font-weight: bold; color: #666666; padding-top: 5px;">
+                                            Adderss
                                             </td>
                                         </tr>
                                         <tr>
@@ -89,7 +89,7 @@
                                     <tbody>
                                         <tr>
                                             <td rowspan="4" style="padding-right: 10px; padding-bottom: 10px;">
-                                                <div class="purchase-img"><img src="data:image/jpeg;base64, <%= raw product.image %>" max-height="auto" width="70px"></div>
+                                                <div class="purchase-img"><img src="data:image/jpeg;base64, <%= product.image %>" max-height="auto" width="70px"></div>
                                             </td>
                                             <td colspan="2" style="font-size: 14px; font-weight: bold; color: #666666; padding-bottom: 5px;">
                                                 <%= product.product_name %>
@@ -97,13 +97,13 @@
                                         </tr>
                                         <tr>
                                             <td style="font-size: 14px; line-height: 18px; color: #757575; width: 440px;">
-                                                Quantity:
+                                                Quantity: <%= product.qty %>
                                             </td>
                                             <td style="width: 130px;"></td>
                                         </tr>
                                         <tr>
                                             <td style="font-size: 14px; line-height: 18px; color: #757575;">
-                                                Attribute here
+                                                Attributes: <%= product.attributes %>
                                             </td>
                                         </tr>
                                         <tr>

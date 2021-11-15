@@ -22,7 +22,7 @@
                                     <tbody>
                                         <tr>
                                             <td style="padding-bottom: 10px;">
-                                                <a href="https://find.co.zm"><img src="data:image/jpeg;base64, <%= find_image() %>" alt="Find" style="height: 100px"  /></a>
+                                                <a href="https://shop.find.co.zm"><img src="/images/icons/findicon.png" alt="Find" style="height: 100px"  /></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -30,19 +30,6 @@
                                                 ZCCM-IH Office Park, Mass Media
                                             </td>
                                         </tr>
-
-                                        <%= @body.first_name <> "" <> @body.last_name %>
-                                        <%= @body.township %><br>
-                                        <%= @body.city %>, <%= @body.province %>, <%= @body.country %><br>
-                                        <%= for product <- @products do %>
-                                            <tr>
-                                                <td width="80%" class="purchase_item">
-                                                    <div class="purchase-img"><img src="data:image/jpeg;base64, <%= raw product.image %>" height="75" width="75"></div>
-                                                    <span class="f-fallback"><%= product.product_name %></span></td>
-                                                <td class="align-right" width="20%" class="purchase_item"><span class="f-fallback"><%= product.price %></span></td>
-                                            </tr>
-                                        <% end %>
-
                                         <tr>
                                             <td style="font-size: 14px; line-height: 18px; color: #666666;">
                                                 Lusaka, Zambia
@@ -70,17 +57,17 @@
                                     <tbody>
                                         <tr>
                                             <td style="width: 55%; font-size: 16px; font-weight: bold; color: #666666; padding-bottom: 5px;">
-                                                Adderss
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width: 55%; font-size: 14px; line-height: 18px; color: #666666;">
-                                              <%= @body.first_name <> " " <> @body.last_name %>
+                                            <%= @body.first_name <> " " <> @body.last_name %>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width: 55%; font-size: 14px; line-height: 18px; color: #666666;">
                                               <%= @body.phone_number %> <br> <%= @body.email %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 55%; font-size: 16px; font-weight: bold; color: #666666; padding-top: 5px;">
+                                            Adderss
                                             </td>
                                         </tr>
                                         <tr>
@@ -102,7 +89,7 @@
                                     <tbody>
                                         <tr>
                                             <td rowspan="4" style="padding-right: 10px; padding-bottom: 10px;">
-                                                <div class="purchase-img"><img src="data:image/webp;base64, <%= raw product.image %>" max-height="auto" width="70px"></div>
+                                                <div class="purchase-img"><img src="data:image/jpeg;base64, <%= product.image %>" max-height="auto" width="70px"></div>
                                             </td>
                                             <td colspan="2" style="font-size: 14px; font-weight: bold; color: #666666; padding-bottom: 5px;">
                                                 <%= product.product_name %>
@@ -110,13 +97,13 @@
                                         </tr>
                                         <tr>
                                             <td style="font-size: 14px; line-height: 18px; color: #757575; width: 440px;">
-                                                Quantity:
+                                                Quantity: <%= product.qty %>
                                             </td>
                                             <td style="width: 130px;"></td>
                                         </tr>
                                         <tr>
                                             <td style="font-size: 14px; line-height: 18px; color: #757575;">
-                                                Attribute here
+                                                Attribute: <%= product.attributes %>
                                             </td>
                                         </tr>
                                         <tr>
